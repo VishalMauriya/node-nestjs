@@ -8,7 +8,7 @@ async function bootstrap() {
   //global middleware
   // app.use(authMiddleware);
   app.useGlobalPipes(new ValidationPipe());
-  const port = 3000;
+  const port = process.env.PORT;
   await app.listen(port);
   console.log(`Listening on http://localhost:${port}`);
   
