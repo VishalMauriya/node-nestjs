@@ -3,6 +3,7 @@ import { Controller, Get, Post, Body, Delete, Param, ParseIntPipe } from '@nestj
 import { UsersService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './schema/user.schema';
+import { Roles } from 'src/roles.decorator';
 // import { User } from './interfaces/user.interface';
 
 @Controller('users')
@@ -10,6 +11,7 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Post()
+  @Roles(['admin'])
   async create(@Body() createUserDto: CreateUserDto) {
     const user = this.usersService.create(createUserDto);
     return user
